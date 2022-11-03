@@ -2,7 +2,7 @@ from django.db.models import QuerySet
 from django_filters import rest_framework as filters
 from rest_framework import viewsets
 
-from api.filters import NoPagination
+from api.filters import CustomPagination, NoPagination
 from api.models import Comment
 from api.serializers.comment_serializer import CommentSerializer
 
@@ -17,4 +17,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset: QuerySet[Comment] = Comment.objects.all()
     serializer_class = CommentSerializer
     filter_class = CommentFilter
-    pagination_class = NoPagination
+    pagination_class = CustomPagination

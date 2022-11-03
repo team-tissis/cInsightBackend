@@ -4,11 +4,23 @@ from django.urls import path
 from rest_framework.authtoken import views
 from rest_framework_nested import routers
 from api.view.comment_view import CommentViewSet
+from api.view.lecture_view import LectureViewSet
+from api.view.proposal_view import ProposalViewSet
+from api.view.user_view import UserViewSet
 
 router = routers.DefaultRouter()
 
 """ Comment """
 router.register(r"comments", CommentViewSet)
+
+""" Lecture """
+router.register(r"lectures", LectureViewSet)
+
+""" Proposal """
+router.register(r"proposals", ProposalViewSet)
+
+""" User """
+router.register(r"users", UserViewSet)
 
 # Basic router
 urlpatterns = router.urls

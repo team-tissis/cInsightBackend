@@ -3,17 +3,17 @@ from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
 
 class Lecture(models.Model):
-    name = models.TextField() 
-    from_date = models.DateTimeField() 
-    to_date = models.DateTimeField() 
-    tag = models.CharField(max_length=30)
-    description = models.TextField()
-    material_url = models.URLField() # 資料 url
-    record_url = models.URLField() # 動画 url
+    name = models.TextField(null=True) 
+    from_date = models.DateTimeField(null=True) 
+    to_date = models.DateTimeField(null=True) 
+    tags = models.TextField(null=True)
+    description = models.TextField(null=True)
+    material_url = models.URLField(null=True) # 資料 url
+    movie_url = models.URLField(null=True) # 動画 url
 
-    attendee_max_num = models.IntegerField() # 参加上限数
-    attendee_num = models.IntegerField() # 現在の参加者数
-    attendee_eoas = JSONField() # userのwallet account addressのjson．"{"eoa":["0xhoge", "0xfuga"]}"
+    attendee_max_num = models.IntegerField(null=True) # 参加上限数
+    attendee_num = models.IntegerField(null=True) # 現在の参加者数
+    attendee_eoas = JSONField(null=True) # userのwallet account addressのjson．"{"eoa":["0xhoge", "0xfuga"]}"
 
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)

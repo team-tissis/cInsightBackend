@@ -3,6 +3,7 @@ from api.models import Comment
  
  
 class CommentSerializer(serializers.ModelSerializer):
+    lecture_id = serializers.IntegerField(required=False)
  
     class Meta:
         model = Comment
