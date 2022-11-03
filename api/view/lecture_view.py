@@ -22,7 +22,6 @@ class LectureViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     
     def retrieve(self, request, *args, **kwargs):
-        print("hoge")
         instance = self.get_object()
         serializer = DetailLectureSerializer(instance)
         return Response({"lecture": serializer.data}, status=status.HTTP_200_OK)
