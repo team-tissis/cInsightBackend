@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
+from api.models.user import CustomeUser
 
 class Lecture(models.Model):
     name = models.TextField(null=True) 
+    author = models.ForeignKey(CustomeUser, on_delete=models.CASCADE, null=True, related_name="author")
     from_date = models.DateTimeField(null=True) 
     to_date = models.DateTimeField(null=True) 
     tags = models.TextField(null=True)
@@ -11,6 +13,7 @@ class Lecture(models.Model):
     material_url = models.URLField(null=True) # 資料 url
     movie_url = models.URLField(null=True) # 動画 url
 
+    favo = models.IntegerField(null=True)
     attendee_max_num = models.IntegerField(null=True) # 参加上限数
     attendee_num = models.IntegerField(null=True) # 現在の参加者数
     attendee_eoas = JSONField(null=True) # userのwallet account addressのjson．"{"eoa":["0xhoge", "0xfuga"]}"
