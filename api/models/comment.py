@@ -13,7 +13,7 @@ class Comment(models.Model):
     commenter = models.ForeignKey(CustomeUser, on_delete=models.PROTECT, null=True, related_name="comments")
     code = models.CharField(max_length=64, null=True)
     content = models.TextField(null=True)
-    favo = models.IntegerField(null=True)
+    favo = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -39,6 +39,6 @@ class UserViewSet(viewsets.ModelViewSet):
             if users.count() == 0:
                 return Response({"user": None, "message": "Userが見つかりませんでした"}, status=status.HTTP_404_NOT_FOUND)
             else:
-                user = user.first()
+                user = users.first()
                 serializer = UserSerializer(user)
                 return Response({"user": serializer.data}, status=status.HTTP_200_OK)
