@@ -6,7 +6,6 @@ from api.serializers.user_serializer import UserSerializer
 class CommentSerializer(serializers.ModelSerializer):
     lecture_id = serializers.IntegerField(required=False)
     commenter = UserSerializer(many=False, read_only=True)
-    commenter_eoa = serializers.PrimaryKeyRelatedField(required=False, queryset=CustomeUser.objects.all(), write_only=True)
  
     class Meta:
         model = Comment

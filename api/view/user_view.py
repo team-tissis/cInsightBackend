@@ -5,6 +5,10 @@ from api.models import CustomeUser
 from api.filters import NoPagination
 from api.serializers.user_serializer import UserSerializer
 from rest_framework.response import Response
+from rest_framework.decorators import action
+from api.utils import HttpMethod
+from django.db import transaction
+from rest_framework.request import Request
 
 
 class UserFilter(filters.FilterSet):
@@ -23,3 +27,18 @@ class UserViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = UserSerializer(instance)
         return Response({"user": serializer.data}, status=status.HTTP_200_OK)
+
+    @transaction.atomic
+    @action(detail=False, methods=[HttpMethod.GET.name])
+    def fetch_by_account_address(self, request: Request, *args, **kwargs):
+        account_address = request.query_params.get("account_address")
+        if account_address is None:
+            return Response({"user": None, "message": "アカウントアドレスが指定されていません"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            users = CustomeUser.objects.filter(eoa=account_address)
+            if users.count() == 0:
+                return Response({"user": None, "message": "Userが見つかりませんでした"}, status=status.HTTP_404_NOT_FOUND)
+            else:
+                user = user.first()
+                serializer = UserSerializer(user)
+                return Response({"user": serializer.data}, status=status.HTTP_200_OK)

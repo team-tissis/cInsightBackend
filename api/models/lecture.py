@@ -5,7 +5,7 @@ from api.models.user import CustomeUser
 
 class Lecture(models.Model):
     name = models.TextField(null=True) 
-    author = models.ForeignKey(CustomeUser, on_delete=models.CASCADE, null=True, related_name="author")
+    author = models.ForeignKey(CustomeUser, on_delete=models.CASCADE, null=True, related_name="lectures")
     from_date = models.DateTimeField(null=True) 
     to_date = models.DateTimeField(null=True) 
     tags = models.TextField(null=True)
