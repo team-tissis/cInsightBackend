@@ -7,6 +7,15 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
+migration がうまくいかない場合は，
+
+```
+python manage.py makemigrations api
+python manage.py migrate api
+```
+
+を試してみると良い．
+
 さらに、postgresql で Database を作って、
 settings.py の以下を編集。
 
