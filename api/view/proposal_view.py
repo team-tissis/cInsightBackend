@@ -20,7 +20,8 @@ class ProposalViewSet(viewsets.ModelViewSet):
     filter_class = ProposalFilter
     pagination_class = CustomPagination
 
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
+    def retrieve(self, request, pk,  *args, **kwargs):
+        instance = Proposal.objects.get(web3_id=pk)
         serializer = ProposalSerializer(instance)
+        print(serializer.data)
         return Response({"proposal": serializer.data}, status=status.HTTP_200_OK)

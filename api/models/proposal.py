@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from typing import Any
 
 class Proposal(models.Model):
+    web3_id = models.IntegerField(null=True)
     title = models.TextField(null=True) 
     transaction = models.TextField(null=True) 
     description = models.TextField(null=True) 
@@ -19,3 +21,8 @@ class Proposal(models.Model):
     class Meta:
         db_table = "proposal"
     
+    def save(self, force_insert: bool = False, force_update: bool = False, *args: Any, **kwargs: Any) -> None:
+        super().save(force_insert, force_update, *args, **kwargs)
+        if self.web3_id is None:
+            self.web3_id = Proposal.objects.count()
+            self.save()
