@@ -6,6 +6,7 @@ from api.serializers.user_serializer import UserSerializer
  
 class PureLectureSerializer(serializers.ModelSerializer):
     author_id = serializers.IntegerField(required=False)
+    author = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Lecture

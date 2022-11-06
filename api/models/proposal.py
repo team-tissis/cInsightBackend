@@ -16,8 +16,7 @@ class Proposal(models.Model):
     # 以下、後で消す
     for_count = models.IntegerField(null=True)
     against_count = models.IntegerField(null=True)
-    end_date = models.DateField(null=True)  
-    status = models.CharField(max_length=64, null=True)
+    end_date = models.DateField(null=True)
 
     class Meta:
         db_table = "proposal"
