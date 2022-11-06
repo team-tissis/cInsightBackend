@@ -11,6 +11,7 @@ class Proposal(models.Model):
     quorum = models.IntegerField(null=True) # 定足数．必要ないかも．
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
+    datas = models.TextField(null=True)
     
     # 以下、後で消す
     for_count = models.IntegerField(null=True)
