@@ -5,6 +5,7 @@ from api.serializers.user_serializer import UserSerializer
  
  
 class PureLectureSerializer(serializers.ModelSerializer):
+    author_id = serializers.IntegerField(required=False)
 
     class Meta:
         model = Lecture
@@ -14,5 +15,5 @@ class PureLectureSerializer(serializers.ModelSerializer):
  
 class DetailLectureSerializer(PureLectureSerializer):
     comments = CommentSerializer(many=True, read_only=True)
-    author = UserSerializer(many=False, read_only=True);
-    author_id = serializers.IntegerField(read_only=True);
+    author = UserSerializer(many=False, read_only=True)
+    author_id = serializers.IntegerField(required=False)
