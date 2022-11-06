@@ -1,4 +1,4 @@
-# Daofication Django Project
+# CInsight DAO Django Project
 
 ```
 pipenv install
