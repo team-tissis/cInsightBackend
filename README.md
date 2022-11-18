@@ -1,5 +1,24 @@
 # CInsight DAO Django Project
 
+postgresql で Database を作って、
+settings.py の以下を編集。
+databaseやパスワードを設定した場合はそれに則って編集。
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'your_name',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+```
+
+その後，
+
 ```
 pipenv install
 pipenv shell
@@ -16,21 +35,6 @@ python manage.py migrate api
 
 を試してみると良い．
 
-さらに、postgresql で Database を作って、
-settings.py の以下を編集。
-
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'daofication',
-        'USER': 'nishimoto',
-        'PASSWORD': '123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-```
 
 そして、
 
