@@ -32,12 +32,13 @@ class UserViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=[HttpMethod.GET.name])
     def fetch_by_account_address(self, request: Request, *args, **kwargs):
         account_address = request.query_params.get("account_address")
+        print("account_address:", account_address)
         if account_address is None:
             return Response({"user": None, "message": "アカウントアドレスが指定されていません"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             users = CustomeUser.objects.filter(eoa=account_address)
             if users.count() == 0:
-                return Response({"user": None, "message": "Userが見つかりませんでした"}, status=status.HTTP_404_NOT_FOUND)
+                return Response({"user": None}, status=status.HTTP_404_NOT_FOUND)
             else:
                 user = users.first()
                 serializer = UserSerializer(user)
