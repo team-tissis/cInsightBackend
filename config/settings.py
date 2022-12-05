@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-82vownnwuph)0)wq-ax!ynj2e(gjgwuzl(tbjkw!k&7g0kd0oa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -84,11 +84,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+"""
+PostgresDBログイン方法
+ユーザー作成
+- createuser -P <pg-user>
+DB作成
+- createdb example-db -O <pg-user>
+DBにログイン
+psql -U ユーザー名 example-db
+`psql -U u-cinsight db-cinsight`
+テーブルを削除する方法
+DROP TABLE テーブル名;
+参考記事:
+https://qiita.com/ysdyt/items/64ed98b420ea5c4e52ec
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'shion',
+        'NAME': 'example-db',
+        'USER': 'atsushi',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -141,6 +156,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:3001',
 )
 
 SHELL_PLUS="ipython"
