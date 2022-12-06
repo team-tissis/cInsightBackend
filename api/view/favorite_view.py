@@ -25,8 +25,7 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
 
     @transaction.atomic
-    @action(detail=False, methods=[HttpMethod.POST.name])
-    def inquery_and_create(self, request: Request, *args, **kwargs):
+    def create(self, request: Request, *args, **kwargs):
         commentId = request.data.get("comment_id")
         userId = request.data.get("user_id")
         if not ((commentId is not None) and (userId is not None)):
@@ -48,8 +47,7 @@ class FavoriteViewSet(viewsets.ModelViewSet):
             return Response({"message": "Commentが見つかりませんでした"}, status=status.HTTP_404_NOT_FOUND)
 
     @transaction.atomic
-    @action(detail=False, methods=[HttpMethod.DELETE.name])     
-    def inquery_and_destroy(self, request: Request, *args, **kwargs):
+    def destroy(self, request: Request, *args, **kwargs):
         favoriteId = request.data.get("id")
         favorite = Favorite.objects.get(id=favoriteId)
         if favorite is None:
